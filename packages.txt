@@ -1,2 +1,4 @@
-build-essential
 python3-dev
+build-essential
+libopenblas-dev
+gfortran

@@ -1,9 +1,10 @@
+# Add at the top of requirements.txt
+--only-binary=:all:
+pillow==9.5.0
 streamlit==1.25.0
 pandas==2.1.1
 matplotlib==3.7.1
 statsmodels==0.14.0
 requests==2.31.0
-numpy==1.26.0  # Fixes conflict with pandas
+numpy==1.26.0
 scipy==1.11.1
-pillow==9.5.0  # Prevents Pillow build issues
-setuptools==65.5.0  # Ensures distutils is installed

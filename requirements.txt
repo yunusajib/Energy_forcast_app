@@ -1,6 +1,6 @@
 # Add at the top of requirements.txt
 --only-binary=:all:
-pillow==9.5.0
+pillow>=10.2.0
 streamlit==1.25.0
 pandas==2.1.1
 matplotlib==3.7.1

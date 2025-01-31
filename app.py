@@ -65,19 +65,6 @@ def fetch_historical_energy_data():
 # Fetch historical energy prices
 historical_energy_data = fetch_historical_energy_data()
 
-# Savings Calculator (Priority Feature)
-st.write("## 💰 How Much Can You Save?")
-monthly_bill = st.number_input("Enter Your Current Monthly Energy Bill (£)", min_value=0, step=10)
-if st.button("📊 Calculate Savings"):
-    estimated_savings = monthly_bill * 0.30  # Assuming 30% savings with green energy solutions
-    st.write(f"🌱 **Potential Savings:** £{estimated_savings:.2f} per month")
-
-# Check if eligible for government grants (Priority Feature)
-st.write("## 🏛 Check Government Grant Eligibility")
-if st.button("🔎 Check Now"):
-    st.write("✅ You may be eligible for **Green Energy Grants**.")
-    st.write("Visit [UK Government Grants Portal](https://www.gov.uk/improve-energy-efficiency) to learn more.")
-
 # AI Energy Forecasting Tool
 st.write("## 🔮 AI-Powered Energy Forecast")
 st.write("Input your monthly energy consumption and let AI **predict your costs & emissions** while suggesting the **best green energy solutions** to save money and protect the planet.")
@@ -89,6 +76,7 @@ monthly_energy_usage_kwh = st.number_input("Enter Your Monthly Energy Usage (kWh
 if "forecast" not in st.session_state:
     st.session_state.forecast = None
     st.session_state.estimated_carbon_savings = None
+    st.session_state.estimated_savings = None
 
 if st.button("🔍 Generate AI Forecast"):
     if monthly_energy_usage_kwh > 0:
@@ -97,16 +85,25 @@ if st.button("🔍 Generate AI Forecast"):
         model_fit = model.fit()
         forecast = model_fit.forecast(steps=1)[0] * (monthly_energy_usage_kwh / 100)
         estimated_carbon_savings = (monthly_energy_usage_kwh * current_carbon_intensity) / 1000  # Convert gCO₂ to kgCO₂
+        estimated_savings = forecast * 0.30  # Assuming 30% savings with green energy solutions
         
         # Store in session state
         st.session_state.forecast = forecast
         st.session_state.estimated_carbon_savings = estimated_carbon_savings
+        st.session_state.estimated_savings = estimated_savings
         
         st.write("### 📊 AI-Powered Cost & Carbon Forecast")
         st.write(f"💰 **Next Month's Predicted Energy Cost:** £{forecast:.2f}")
         st.write(f"🌿 **Estimated Monthly Carbon Emissions:** {estimated_carbon_savings:.2f} kgCO₂")
+        st.write(f"💡 **Potential Savings with Green Energy:** £{estimated_savings:.2f} per month")
     else:
         st.error("⚠️ Please enter a valid monthly energy usage value.")
+
+# Check if eligible for government grants (Priority Feature)
+st.write("## 🏛 Check Government Grant Eligibility")
+if st.button("🔎 Check Now"):
+    st.write("✅ You may be eligible for **Green Energy Grants**.")
+    st.write("Visit [UK Government Grants Portal](https://www.gov.uk/improve-energy-efficiency) to learn more.")
 
 # Close Database Connection
 st.write("---")

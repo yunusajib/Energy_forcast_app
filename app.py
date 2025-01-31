@@ -24,10 +24,6 @@ st.markdown("""
 st.markdown("<h1 style='text-align: center; color: #4CAF50;'>🌍 AI Energy Cost & Carbon Forecast</h1>", unsafe_allow_html=True)
 st.write("#### ⚡ Discover how AI can **predict your future energy costs**, reduce carbon emissions, and help you **switch to green energy solutions** for a **better future**.")
 
-# Free Forever CTA Button
-st.markdown("""
-    <a href='#' class='cta-button'>🚀 Try for Free - Forever</a>
-""", unsafe_allow_html=True)
 
 # Function to fetch live UK electricity price (in pence/kWh) & carbon intensity
 def get_live_energy_data():

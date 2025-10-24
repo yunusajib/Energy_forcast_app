@@ -77,7 +77,7 @@ Component	Tool:
 
 🛠️ Installation
           
-          git clone https://github.com/YOUR_USERNAME/emission_project.git
+          git clone https://github.com/yunusajib/Energy_forcast_app.git
           cd emission_project
           pip install -r requirements.txt
           streamlit run app.py
